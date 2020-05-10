@@ -9,18 +9,27 @@ const list = document.getElementById('todo-list')
 const itemCountSpan = document.getElementById('item-count')
 const uncheckedCountSpan = document.getElementById('unchecked-count')
 
-let itemCountTimes = 0
-let uncheckedCountTimes = 0
+let todoId = 0
 
 function newTodo() {
 	todo = prompt("What's your TODO", "Empty TODO")
 
-	itemCountTimes++
-	uncheckedCountTimes++
-	uncheckedCountSpan.innerHTML = uncheckedCountTimes
-	itemCountSpan.innerHTML = itemCountTimes
+	const newLi = document.createElement("li")
+	const newDelete = document.createElement("button")
 
-	let newli = document.createElement("li")
-	newli.appendChild(document.createTextNode(todo))
-	list.appendChild(newli)
+	newLi.setAttribute("id", todoId)
+	newLi.appendChild(document.createTextNode(todo))
+	newDelete.appendChild(document.createTextNode("delete"))
+
+	todoId++
+
+	newLi.appendChild(newDelete)
+	list.appendChild(newLi)
+	newDelete.setAttribute("onClick", deleteTodo(todoId-1))
+}
+
+function deleteTodo(elementIndex) {
+	console.log(elementIndex)
+	console.log(list.childNodes[elementIndex])
+	list.removeChild(list.childNodes[elementIndex])
 }
