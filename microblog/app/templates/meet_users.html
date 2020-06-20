@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Explore</h1>
+{% for user in list_of_users %}
+    {% if curr == user.username %}
+    {% else %}
+    <a href="/user/{{ user.username }}">{{ user.username }}</a>
+    <br>
+    {% endif %}
+{% endfor %}
+{% endblock %}

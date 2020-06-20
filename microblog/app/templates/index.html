@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Hi, {{ current_user.username }}!</h1>
+<table>
+    {% set walker = 0 %}
+    {% for post in Post.query.filter_by(post_user=current_user.username): %}
+    <tr>
+        <td>
+            <img src="{{ user.avatar(45) }}">
+        </td>
+        <td>
+            <b>{{ post.heading }}</b><br>
+            {% set current_list = completed_list[post.id - 1] %}
+            {% for string in current_list %}
+                {{ string }}
+            {% endfor %}
+                <br>
+        </td>
+    </tr>
+    {% set walker = walker + 1 %}
+    {% endfor %}
+</table>
+{% endblock %}
