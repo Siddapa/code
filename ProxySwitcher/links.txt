@@ -1,0 +1,1 @@
+Proxy Switching w/ Requests: https://blog.scrapinghub.com/python-requests-proxy
